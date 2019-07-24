@@ -105,16 +105,50 @@ input[type="search"],
   color: #6aaee6;
 }
 
-/* 추천서적 커버이미지 공통
-.recommend-book-cover {
-  width: 75%;
-  margin: 1em auto;
-  text-align: center;
-}
+
+
+/* 추천서적 커버이미지 공통 */
+.recommend-book-cover{margin: 0 auto;text-align: center;}
+.recommend-book-cover figcaption{margin: 1em;font-weight:700;}
+
 .recommend-book-cover img {
   max-width: 100%;
   height: auto;
-} */
+} 
+.recommend-book-detail{text-align: center;}
+.recommend-book-author, .recommend-book-author-name{display: inline-block;}
+.recommend-book-grade{font-size: 2em; color: #abd375;}
+[class$= "summary"]{line-height:1.5em;margin: 1em 0;}
+
+/* common news video */
+.iframe-container{width: 100%;height: 0;padding-top:calc(9/16 *100%);position: relative;}
+.rwg-iframe{width: 100%; height:100%;position: absolute;top:0;left: 0;}
+
+.news-date{display:block;text-align: right;}
+
+/* common board */
+.board-list a, .board-list time{overflow: hidden;display: inline-block;position: relative; top:6px;}
+.board-list a{width:calc(100% - 120px);white-space:nowrap;text-overflow: ellipsis;}
+.board-more{position: absolute;top:1.5em;left: 0;}
+
+/* 인기 사이트 목록 공통 */
+.favorite-site-list {
+  overflow: hidden;
+}
+.favorite-site-list li {
+  counter-increment: number;
+  margin: 1em 0;
+}
+.favorite-site-list li::before {
+  content: counter(number, decimal);
+  background: #eea60a;
+  color: #fff;
+  border-radius: 50%;
+  padding: 0 0.5em;
+  margin-right: 0.5em;
+}
+
+
 /* Mobile layout  */
 @media screen and (min-width: 320px) and (max-width: 999px) {
   .header {
@@ -153,8 +187,7 @@ input[type="search"],
     margin-left: 1em;
   }
   /* mobile layout */
-  .search-form {
-  }
+  
   input[type="search"] {
     width: calc(100% - 35px);
   }
@@ -212,14 +245,20 @@ input[type="search"],
   .menu-act .sub-menu{display: block;}
   .sub-menu li{margin: 0.5em 0;}
   
+/* mobile main content layout */
+.main{padding:0 20px;}
+
+/* mobile recommand */
+.recommend-book-cover{width: 50%}
+
+
 }
 
 
 /* Desktop layout 1000px~ */
 @media screen and (min-width: 1000px) {
-  /* desktop layout */
-  .header,
-  .menu {
+  /* desktop style */
+  .header, .menu, .main, .slogan {
     width: 1000px;
     margin: 0 auto;
   }
@@ -324,4 +363,24 @@ input[type="search"],
   .sub-menu {
     margin: 1.5em;
   }
+
+/* desktop main content layout */
+/* .main{background: yellow;display: grid;grid-template-rows:auto auto;grid-template-columns:repeat(12, 65px);grid-column-gap:20px;}
+.recommend-book{grid-column-start: 1; grid-column-end: 5;grid-row-start:1;grid-row-end:3; }
+.news{grid-column-start: 5; grid-column-end: 13;} */
+
+
+.main{display: grid;
+  grid-template-rows:auto auto;
+  grid-template-columns:repeat(12, 65px);grid-column-gap:20px;
+  grid-template-areas:
+      "book  book  book  book  news    news    news    news    news    news news news"
+      "board board board board twitter twitter twitter twitter twitter site site site";}
+
+.recommend-book{grid-area: book;}
+.news{grid-area: news;}
+.board{grid-area: board;}
+.favorite-site{grid-area:site;}
+.twitter{grid-area: twitter;}
+
 }
